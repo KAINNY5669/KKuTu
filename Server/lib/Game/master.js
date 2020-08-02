@@ -72,12 +72,12 @@ process.on('uncaughtException', function(err){
 function processAdmin(id, value){
 	var cmd, temp, i, j;
 	
-	value = value.replace(/^(#\w+\s+)?(.+)/, function(v, p1, p2){
+	value = value.replace(/^(!\w+\s+)?(.+)/, function(v, p1, p2){
 		if(p1) cmd = p1.slice(1).trim();
 		return p2;
 	});
 	switch(cmd){
-		case "yell":
+	case "yell":
 			KKuTu.publish('yell', { value: value });
 			return null;
 		case "kill":
@@ -293,7 +293,7 @@ exports.init = function(_SID, CHAN){
 				JLog.warn("Error on #" + key + " on ws: " + err.toString());
 			});
 			// 웹 서버
-			if(info.headers.host === "game:8080"){
+			if(info.headers.host.match(/^127\.0\.0\.2:/)){
 				if(WDIC[key]) WDIC[key].socket.close();
 				WDIC[key] = new KKuTu.WebServer(socket);
 				JLog.info(`New web server #${key}`);

@@ -38,7 +38,7 @@ mixin SettingOption(id, text, st)
 		label(for=id)= text
 
 block Subject
-	title= L('title')
+	title= '케이니끄투'
 
 block JS
 	script(type='text/javascript', src='/js/in_game_kkutu.min.js')
@@ -64,7 +64,6 @@ block Jungle
 			<h5>${locals.KO_INJEONG.map(function(item){ return L('theme_' + item); })}</h5>\
 			<h5 style='margin-top: 2px; border-top: 1px dashed #444444; padding-top: 2px; color: #BBBBBB;'>${L('explInjeongListTitle')} (${L('modeEKT')}, ${L('modeESH')})</h5>\
 			<h5>${locals.EN_INJEONG.map(function(item){ return L('theme_' + item); })}</h5>`;
-
 block Middle
 	- var VERSION = L('version');
 	- var nick = SESSION.profile ? (SESSION.profile.title || SESSION.profile.name) : null;
@@ -291,8 +290,12 @@ block Middle
 			div#ri-players(style='width: 100%;')
 		div.dialog-bar.tail-button
 			button#room-info-join= L('join')
-	+Dialog('ProfileDiag', 300, 365)
+	+Dialog('ProfileDiag', 300, 395)
 		div.dialog-bar.profile-head
+		div.dialog-bar
+			h4(style='width: 83px;')= L('PRANK')
+			h4#rank
+			h4#rankpoint
 		div.dialog-bar
 			h4(style='width: 83px;')= L('place')
 			h4.dialog-bar-value#profile-place
@@ -391,9 +394,9 @@ block Middle
 	+Dialog('HelpDiag', 550, 400, L('helpText'))
 		iframe#help-board(width=550, height=375)
 	+Product('UserList')
-		div 불러오는 중
-	+Product('RoomList')
-		div 불러오는 중
+		div 유저 정보를 불러오는 중입니다.
+		Product('RoomList')
+		div 방 정보를 불러오는 중입니다.
 	+Product('Shop')
 		div.shop-categories
 			- for(var i in locals.CATEGORIES)
@@ -439,6 +442,9 @@ block Middle
 			div.my-stat-name.ellipse
 			div.my-stat-record
 			div.my-stat-ping
+			div
+				div.my-rank
+				div.my-rankPoint
 			div
 				+GraphBar('my-okg')
 				div.bar-text.my-okg-text

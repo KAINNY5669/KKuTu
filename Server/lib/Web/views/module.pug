@@ -1,3 +1,4 @@
+
 //-
 	Rule the words! KKuTu Online
 	Copyright (C) 2017 JJoriping(op@jjo.kr)
@@ -19,25 +20,13 @@
 	* Login 을 Passport 로 수행하기 위한 수정
 -
 	const MENU = [
-		{ key: 'HOME', href: "http://jjo.kr/" },
-		/*{ key: 'DB', sub: [
-			{ key: 'DB_CHAMP', href: "/db/champion" },
-			{ key: 'DB_ITEM', href: "/db/item" },
-			{ key: 'DB_RUNE', href: "/db/rune" },
-			{ key: 'DB_MASTERY', href: "/db/mastery" }
-		]},*/
-		{ key: 'GAMES', sub: [
-			{ key: 'GAMES_KKUTU', href: "/" },
-			{ key: 'GAMES_FATES', href: "http://jjo.kr/game/fates" }
-		]},
-		{ key: 'GALLERY', href: "http://jjo.kr/gallery" }
+		{ key: 'HOME', href: "http://kkutuk.com" },
 	];
 	const PUBLIC = locals.published;
 	
 	var DATA = locals.data || {};
 	var LANG = locals.locale;
 	var SESSION = locals.session;
-
 	function L(id){
 		var R = LANG[id] || "(L#"+id+")", i;
 		
@@ -55,7 +44,6 @@
 		for(i in res) res[i] = ((res[i] < 10) ? "0" : "") + res[i];
 		return res.join("").toString();
 	};
-
 mixin Menu()
 	div.Menu
 		- for(i in MENU)
@@ -130,7 +118,7 @@ mixin Expl(text, width)
 			h5= text
 
 mixin Product(id)
-	div(class=id+'Box Product')
+	div(class=id+'Box Product', style='display: ' + (id === 'AD' ? 'block' : 'none'))
 		h5.product-title!= L(id)
 		div.product-body
 			if block

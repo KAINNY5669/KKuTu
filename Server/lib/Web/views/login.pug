@@ -23,7 +23,7 @@ include module
 doctype html
 html
 	head
-		title= L('title')
+		title= '케이니끄투 - 로그인'
 		+PageHead()
 	body
 		span#locale= JSON.stringify(LANG)
@@ -31,7 +31,8 @@ html
 		div.login-with= locals.text ? L(locals.text) : L('loginWith')
 		//볕뉘 수정
 		each val in loginList
+		
 			a(href="/login/" + val.vendor)
 				button(style="color: " + val.fontColor + "; background-color: " + val.color + ";")= L(val.displayName)
 		//볕뉘 수정 끝
-		div.login-legal!= L('loginLegal')
+		div.login-legal!= '케이니끄투에 로그인을 하시면 저희가 공지하는 개인정보처리방침과 운영정책에 동의하게 됩니다.'
