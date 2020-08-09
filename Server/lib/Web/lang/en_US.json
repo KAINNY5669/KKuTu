@@ -2,7 +2,7 @@
 	"__README__": "English table is not built yet due to the absence of my English skill. Please translate this if you are good at English.",
 
 	"GLOBAL": {
-		"GPL": "<div style='color: #666;'>Rule the words! KKuTu Online Copyright (C) {year} {author}({email addr.})<br>This program comes with ABSOLUTELY NO WARRANTY.<br>This is free software, and you are welcome to redistribute it under certain conditions.<br>For details visit the repository of this software: <a target='_blank' href='{url of the source code of this server}'>{url of the source code of this server}</a></div>",
+		"GPL": "<div style='color: #666;'>Rule the words! KKuTu Online Copyright (C) 2020 KAINNY uco@kakao.com<br>This program comes with ABSOLUTELY NO WARRANTY.<br>This is free software, and you are welcome to redistribute it under certain conditions.<br>For details visit the repository of this software: <a target='_blank' href='https://github.com/KAINNY5669/kainnykkuturepo'>https://github.com/KAINNY5669/kainnykkuturepo</a></div>",
 
 		"CREATOR":	"개발자 블로그",
 		"HOME":		"FA{home}",
@@ -337,7 +337,11 @@
 		"avg": "평균",
 		"afterRun": "초 후 다음 라운드",
 		"kpm": "<label style='font-size: 11px;'>타/분</label>",
-
+		"explUnlimited": "그림퀴즈에서 나오는 단어의 길이를 무한정으로 조절합니다.",
+		"optShort": "짧음",
+		"explShort": "그림퀴즈에서 나오는 단어의 길이를 최대 4글자로 조절합니다.",
+		"optUnlimited": "무한정",
+		
 		"theme_IMS": "THE iDOLM@STER",
 		"theme_VOC": "VOCALOID",
 		"theme_KRR": "개구리 중사 케로로",
@@ -578,6 +582,7 @@
 		"save": "저장",
 		"denyReq": "요청 거부",
 		"ingames": "게임 관련",
+		"BGMTheme": "테마 선택",
 		"etc": "기타",
 		"denyInvite": "초대",
 		"sureInvite": "님을 초대합니까?",

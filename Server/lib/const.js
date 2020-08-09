@@ -18,15 +18,15 @@
 
 var GLOBAL = require("./sub/global.json");
 
-exports.KKUTU_MAX = 100;
+exports.KKUTU_MAX = 40;
 exports.MAIN_PORTS = GLOBAL.MAIN_PORTS;
 exports.TEST_PORT = 4040;
 exports.SPAM_CLEAR_DELAY = 1600;
 exports.SPAM_ADD_DELAY = 750;
-exports.SPAM_LIMIT = 7;
+exports.SPAM_LIMIT = 15;
 exports.BLOCKED_LENGTH = 10000;
-exports.KICK_BY_SPAM = 9;
-exports.MAX_OBSERVER = 4;
+exports.KICK_BY_SPAM = 20;
+exports.MAX_OBSERVER = 9;
 exports.TESTER = GLOBAL.ADMIN.concat([
 	"Input tester id here"
 ]);
@@ -40,7 +40,9 @@ exports.OPTIONS = {
 	'prv': { name: "Proverb" },
 	'str': { name: "Strict" },
 	'k32': { name: "Sami" },
-	'no2': { name: "No2" }
+	'no2': { name: "No2" },
+	'rank': { name: "RankGame" }
+
 };
 exports.MOREMI_PART = [ 'back', 'eye', 'mouth', 'shoes', 'clothes', 'head', 'lhand', 'rhand', 'front' ];
 exports.CATEGORIES = [ "all", "spec", "skin", "badge", "head", "eye", "mouth", "clothes", "hs", "back" ];
@@ -80,7 +82,7 @@ exports.RULE = {
 	},
 	'ESH': { lang: "en",
 		rule: "Classic",
-		opts: [ "ext", "mis" ],
+		opts: [ "ext", "mis", "rank" ],
 		time: 1,
 		ai: true,
 		big: false,
@@ -88,7 +90,7 @@ exports.RULE = {
 	},
 	'KKT': { lang: "ko",
 		rule: "Classic",
-		opts: [ "man", "ext", "mis", "loa", "str", "k32" ],
+		opts: [ "man", "ext", "mis", "loa", "str", "k32", "rank" ],
 		time: 1,
 		ai: true,
 		big: false,
@@ -96,7 +98,7 @@ exports.RULE = {
 	},
 	'KSH': { lang: "ko",
 		rule: "Classic",
-		opts: [ "man", "ext", "mis", "loa", "str" ],
+		opts: [ "man", "ext", "mis", "loa", "str", "rank" ],
 		time: 1,
 		ai: true,
 		big: false,
@@ -153,7 +155,7 @@ exports.RULE = {
 	},
 	'KDA': { lang: "ko",
 		rule: "Daneo",
-		opts: [ "ijp", "mis" ],
+		opts: [ "ijp", "mis", "rank" ],
 		time: 1,
 		ai: true,
 		big: false,
@@ -161,7 +163,7 @@ exports.RULE = {
 	},
 	'EDA': { lang: "en",
 		rule: "Daneo",
-		opts: [ "ijp", "mis" ],
+		opts: [ "ijp", "mis", "rank" ],
 		time: 1,
 		ai: true,
 		big: false,
@@ -200,13 +202,13 @@ exports.MISSION_ko = [ "가", "나", "다", "라", "마", "바", "사", "아", "
 exports.MISSION_en = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ];
 
 exports.KO_INJEONG = [
-	"IMS", "VOC", "KRR", "KTV",
+	"SCH", "IMS", "VOC", "KRR", "KTV",
 	"NSK", "KOT", "DOT", "DRR", "DGM", "RAG", "LVL",
 	"LOL", "MRN", "MMM", "MAP", "MKK", "MNG",
-	"MOB", "HYK", "CYP", "HRH", "STA",
+	"MOB", "HYK", "CYP", "HRH", "STA", "OIJ",
 	"KGR", "ESB", "ELW", "OIM", "OVW", "NEX", /*"WOW",*/
 	"YRY", "KPO", "JLN", "JAN", "ZEL", "POK", "HAI",
-	"HSS", "KMV", "HDC", "HOS", "OIK", "MUS",
+	"HSS", "KMV", "HDC", "HOS", "OIK", "MIN"
 ];
 exports.EN_INJEONG = [
 	"LOL"

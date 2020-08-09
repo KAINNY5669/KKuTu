@@ -370,7 +370,7 @@ KKuTu.onClientMessage = function($c, msg){
 			
 			msg.value = msg.value.substr(0, 200);
 			msg.value = msg.value.replace(/[^a-z가-힣]/g, "");
-			if(msg.value.length < 2) return;
+			if(msg.value.length < 1) return;
 			break;
 		case 'setAI':
 			if(!msg.target) return;

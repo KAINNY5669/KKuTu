@@ -1,3 +1,4 @@
+
 //-
 	Rule the words! KKuTu Online
 	Copyright (C) 2017 JJoriping(op@jjo.kr)
@@ -76,6 +77,7 @@ block Middle
 		button#HelpBtn.tiny-menu.for-lobby.for-master.for-normal.for-gaming(style='display: none; background-color: #BBBBBB;')!= L('help')
 		button#SettingBtn.tiny-menu.for-lobby.for-master.for-normal.for-gaming(style='display: none; background-color: #CCCCCC;')!= L('settings')
 		button#CommunityBtn.tiny-menu.for-lobby.for-master.for-normal.for-gaming(style='display: none; background-color: #DAA9FF;')!= L('community')
+		button#LeaderboardBtn.tiny-menu.for-lobby.for-master.for-normal.for-gaming(style='display: none; background-color: #FFADD3;')!= L('leaderboard')
 		button#SpectateBtn.for-master.for-normal(style='display: none; background-color: #D19DFF;')= L('spectate')
 		button#SetRoomBtn.for-master(style='display: none; background-color: #B0D2F3;')= L('setRoom')
 		button#NewRoomBtn.for-lobby(style='display: none; background-color: #8EC0F3;')= L('newRoom')
@@ -89,9 +91,8 @@ block Middle
 		button#StartBtn.for-master(style='display: none; background-color: #FFB576;')= L('start')
 		button#ExitBtn.for-master.for-normal.for-gaming(style='display: none; background-color: #FFADAD;')= L('exit')
 		button#ReplayBtn.for-lobby(style='display: none; background-color: #D9FF82;')= L('replay')
-		button#LeaderboardBtn.for-lobby(style='display: none; background-color: #FFADD3;')!= L('leaderboard')
 		div#facebook-menu.fb-like.for-lobby.for-master.for-normal.for-gaming(data-href='http://kkutu.kr', data-width='300', data-layout='button_count', data-action='like', data-show-faces='true', data-share='true')
-	+Dialog('SettingDiag', 300, 240, L('settingsText'))
+	+Dialog('SettingDiag', 300, 280, L('settingsText'))
 		div.dialog-bar
 			h4= L('mute')
 			+SettingOption('mute-bgm', L('bgm'))
@@ -114,7 +115,6 @@ block Middle
 			+SettingOption('only-unlock', L('onlyUnlock'), "width: 200px;")
 		div.dialog-bar.tail-button
 			button#setting-ok= L('save')
-			button#setting-server= L('changeServer')
 	+Dialog('CommunityDiag', 300, 300)
 		div.dialog-bar(style='height: 225px; overflow-y: scroll;')
 			div#comm-friends
@@ -124,7 +124,7 @@ block Middle
 		div.dialog-bar(style='height: 350px;'): table#ranking(style='text-align: center;')
 			thead(style='font-weight: bold; background-color: #DDDDDD;'): tr
 				td(width=30) #
-				td(width=55)= L('LEVEL')
+				td(width=40)= L('LEVEL')
 				td(width=115)= L('nickname')
 				td(width=100)= L('recordScore')
 			tbody
@@ -158,7 +158,7 @@ block Middle
 			input#room-pw(type='password', placeholder=L('password'), maxlength=20)
 		div.dialog-bar
 			h4= L('userLimit')
-			input#room-limit(type='number', min=2, max=8, step=1, value=8)
+			input#room-limit(type='number', min=0, max=36, step=0, value=8)
 		div.dialog-bar
 			h4= L('gameMode')
 			select#room-mode
@@ -183,7 +183,7 @@ block Middle
 			h4#game-mode-expl.dialog-bar-value(style='width: 100%; font-size: 11px;')
 		div.dialog-bar
 			h4= L('numRound')
-			input#room-round(type='number', min=1, max=10, step=1, value=5)
+			input#room-round(type='number', min=1, max=25, step=1, value=5)
 		div.dialog-bar
 			h4= L('roundTime')
 			select#room-time
@@ -231,9 +231,9 @@ block Middle
 			select#practice-level
 				option(value=0)= L('aiLevel0')
 				option(value=1)= L('aiLevel1')
-				option(value=2, selected)= L('aiLevel2')
+				option(value=2)= L('aiLevel2')
 				option(value=3)= L('aiLevel3')
-				option(value=4)= L('aiLevel4')
+				option(value=4, selected)= L('aiLevel4')
 		div.dialog-bar
 			h4= L('team')
 			select#ai-team
@@ -286,7 +286,7 @@ block Middle
 		div.dialog-bar(style='padding: 2px 0px; border-top: 1px dashed #CCC; margin: 2px 0px;')
 			h4= L('players')
 			h4.dialog-bar-value#ri-limit
-		div.dialog-bar(style='height: 190px; overflow-y: scroll;')
+		div.dialog-bar(style='height: 250px; overflow-y: scroll;')
 			div#ri-players(style='width: 100%;')
 		div.dialog-bar.tail-button
 			button#room-info-join= L('join')
@@ -352,8 +352,10 @@ block Middle
 			h4.dialog-bar-value#replay-players -
 		div.dialog-bar.tail-button
 			button#replay-view= L('replayView')
-	+Dialog('DressDiag', 600, 280, L('dress'))
+	+Dialog('DressDiag', 600, 300, L('dress'))
 		div.dialog-bar
+			h4(style='width: 150px;')= L('myNickname')
+			input#dress-nickname(type='textfield', placeholder=L('myNicknameX'), style='width: 435px;', maxlength=100)
 			h4(style='width: 150px;')= L('myExordial')
 			input#dress-exordial(type='textfield', placeholder=L('myExordialX'), style='width: 435px;', maxlength=100)
 		div.dialog-bar(style='width: 150px;')
@@ -393,10 +395,16 @@ block Middle
 			button#obtain-ok= L('OK')
 	+Dialog('HelpDiag', 550, 400, L('helpText'))
 		iframe#help-board(width=550, height=375)
+	+Dialog('AlertDiag', 300, 150, '　')
+		div.dialog-bar
+			h4#AlertText(style='width: 100%;')= '　'
+		div.dialog-bar.tail-button
+			button#alert-ok= L('ok')
+			button#alert-no= L('no')
 	+Product('UserList')
-		div 유저 정보를 불러오는 중입니다.
-		Product('RoomList')
-		div 방 정보를 불러오는 중입니다.
+		div 불러오는 중
+	+Product('RoomList')
+		div 불러오는 중
 	+Product('Shop')
 		div.shop-categories
 			- for(var i in locals.CATEGORIES)
@@ -455,7 +463,7 @@ block Middle
 		div.bar-text.my-gauge-text
 	+Product('Chat')
 		div#Chat
-		input#Talk(maxlength=200)
+		input#Talk(maxlength=180, autocomplete="off")
 		button#ChatBtn= L('send')
 	+Product('AD')
 

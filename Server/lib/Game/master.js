@@ -56,7 +56,7 @@ const GUEST_PERMISSION = exports.GUEST_PERMISSION = {
 	'kickVote': true,
 	'wp': true
 };
-const ENABLE_ROUND_TIME = exports.ENABLE_ROUND_TIME = [ 10, 30, 60, 90, 120, 150 ];
+const ENABLE_ROUND_TIME = exports.ENABLE_ROUND_TIME = [ 1, 2, 3, 4, 5, 6, 7, 8, 10, 30, 60, 90, 120, 150 ];
 const ENABLE_FORM = exports.ENABLE_FORM = [ "S", "J" ];
 const MODE_LENGTH = exports.MODE_LENGTH = Const.GAME_TYPE.length;
 const PORT = process.env['KKUTU_PORT'];
@@ -72,12 +72,12 @@ process.on('uncaughtException', function(err){
 function processAdmin(id, value){
 	var cmd, temp, i, j;
 	
-	value = value.replace(/^(!\w+\s+)?(.+)/, function(v, p1, p2){
+	value = value.replace(/^(#\w+\s+)?(.+)/, function(v, p1, p2){
 		if(p1) cmd = p1.slice(1).trim();
 		return p2;
 	});
 	switch(cmd){
-	case "yell":
+		case "yell":
 			KKuTu.publish('yell', { value: value });
 			return null;
 		case "kill":
@@ -104,7 +104,7 @@ function processAdmin(id, value){
 				temp.send('test');
 				if(DIC[id]) DIC[id].send('tail', { a: i ? "tuX" : "tu", rid: temp.id, id: id, msg: temp.getData() });
 			}
-			return null;
+			return null;			
 		case "dump":
 			if(DIC[id]) DIC[id].send('yell', { value: "This feature is not supported..." });
 			/*Heapdump.writeSnapshot("/home/kkutu_memdump_" + Date.now() + ".heapsnapshot", function(err){
@@ -379,6 +379,7 @@ function joinNewUser($c) {
 		guest: $c.guest,
 		box: $c.box,
 		playTime: $c.data.playTime,
+		rankPoint: $c.data.rankPoint,
 		okg: $c.okgCount,
 		users: KKuTu.getUserList(),
 		rooms: KKuTu.getRoomList(),
@@ -520,7 +521,7 @@ function processClientRequest($c, msg) {
 			if (stable) {
 				if (msg.title.length > 20) stable = false;
 				if (msg.password.length > 20) stable = false;
-				if (msg.limit < 2 || msg.limit > 8) {
+				if (msg.limit < 1 || msg.limit > 16) {
 					msg.code = 432;
 					stable = false;
 				}
