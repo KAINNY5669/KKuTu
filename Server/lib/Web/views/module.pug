@@ -1,3 +1,4 @@
+
 //-
 	Rule the words! KKuTu Online
 	Copyright (C) 2017 JJoriping(op@jjo.kr)
@@ -19,20 +20,13 @@
 	* Login 을 Passport 로 수행하기 위한 수정
 -
 	const MENU = [
-		{ key: 'HOME', href: "http://starkkutu.kro.kr/" },
-		/*{ key: 'DB', sub: [
-			{ key: 'DB_CHAMP', href: "/db/champion" },
-			{ key: 'DB_ITEM', href: "/db/item" },
-			{ key: 'DB_RUNE', href: "/db/rune" },
-			{ key: 'DB_MASTERY', href: "/db/mastery" }
-		]},*/
+		{ key: 'HOME', href: "http://kkutuk.com" },
 	];
 	const PUBLIC = locals.published;
 	
 	var DATA = locals.data || {};
 	var LANG = locals.locale;
 	var SESSION = locals.session;
-
 	function L(id){
 		var R = LANG[id] || "(L#"+id+")", i;
 		
@@ -50,7 +44,6 @@
 		for(i in res) res[i] = ((res[i] < 10) ? "0" : "") + res[i];
 		return res.join("").toString();
 	};
-
 mixin Menu()
 	div.Menu
 		- for(i in MENU)
@@ -61,19 +54,13 @@ mixin Menu()
 					div.menu-sub-separator
 					- for(j in MENU[i].sub)
 						div.menu-sub-btn(onclick='location.href = "'+MENU[i].sub[j].href+'";')!= L(MENU[i].sub[j].key)
-		div#quick-search
-			input#quick-search-tf(placeholder=L('QUICK_HOLDER'))
-			button#quick-search-btn!= L('QUICK_BTN')
+
 		div#account
 			span#profile= SESSION.profile ? JSON.stringify(SESSION.profile) : '{}'
 			div#account-info
 
 mixin MMenu()
 	div.Menu
-		div.menu-btn(id='menu-item-GAMES')
-			+FA('bars')
-			+separator(10)
-			div.menu-sub-btn(onclick='location.href = "http://starkkutu.kro.kr/";', style='margin: 7px 0px; height: 25px;')!= L('HOME')
 		div#account
 			span#profile= SESSION.profile ? JSON.stringify(SESSION.profile) : '{}'
 			div#account-info
@@ -120,7 +107,7 @@ mixin Expl(text, width)
 			h5= text
 
 mixin Product(id)
-	div(class=id+'Box Product')
+	div(class=id+'Box Product', style='display: ' + (id === 'AD' ? 'block' : 'none'))
 		h5.product-title!= L(id)
 		div.product-body
 			if block

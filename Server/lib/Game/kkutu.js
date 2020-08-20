@@ -172,6 +172,7 @@ exports.Data = function(data){
 	
 	this.score = data.score || 0;
 	this.playTime = data.playTime || 0;
+	this.rankPoint = data.rankPoint || 0;
 	this.connectDate = data.connectDate || 0;
 	this.record = {};
 	for(i in Const.GAME_TYPE){
@@ -284,8 +285,6 @@ exports.Client = function(socket, profile, sid){
 	});
 	socket.on('message', function(msg){
 		var data, room = ROOM[my.place];
-		if(!my) return;
-		if(!msg) return;
 		
 		JLog.log(`Chan @${channel} Msg #${my.id}: ${msg}`);
 		try{ data = JSON.parse(msg); }catch(e){ data = { error: 400 }; }
@@ -472,7 +471,7 @@ exports.Client = function(socket, profile, sid){
 		).on(function(__res){
 			DB.redis.getGlobal(my.id).then(function(_res){
 				DB.redis.putGlobal(my.id, my.data.score).then(function(res){
-					JLog.log(`FLUSHED [${my.id}] PTS=${my.data.score} MNY=${my.money}`);
+					JLog.log(`FLUSHED [${my.id}] PTS=${my.data.score} MNY=${my.money} RP=${my.data.rankPoint}`);
 					R.go({ id: my.id, prev: _res });
 				});
 			});
@@ -667,7 +666,7 @@ exports.Client = function(socket, profile, sid){
 		
 		if(!$room) return;
 		if($room.master != my.id) return;
-		if($room.players.length < 2) return my.sendError(411);
+		//if($room.players.length < 2) return my.sendError(411);
 		
 		$room.ready();
 	};
@@ -795,6 +794,7 @@ exports.Room = function(room, channel){
 		extend: room.opts.injeong,
 		mission: room.opts.mission,
 		loanword: room.opts.loanword,
+		randomturn: room.opts.randomturn,
 		injpick: room.opts.injpick || []
 	};*/
 	my.master = null;
@@ -1067,7 +1067,7 @@ exports.Room = function(room, channel){
 			}
 		}
 		if(!DIC[my.master]) return;
-		if(len < 2) return DIC[my.master].sendError(411);
+		//if(len < 2) return DIC[my.master].sendError(411);
 		if(i = my.preReady(teams)) return DIC[my.master].sendError(i);
 		if(all){
 			my._teams = teams;
@@ -1197,7 +1197,7 @@ exports.Room = function(room, channel){
 				res[i].rank = Number(i);
 			}
 			pv = res[i].score;
-			rw = getRewards(my.mode, o.game.score / res[i].dim, o.game.bonus, res[i].rank, rl, sumScore);
+			rw = getRewards(o.data.rankPoint, my.mode, o.game.score / res[i].dim, o.game.bonus, res[i].rank, rl, sumScore, my.opts);
 			rw.playTime = now - o.playAt;
 			o.applyEquipOptions(rw); // 착용 아이템 보너스 적용
 			if(rw.together){
@@ -1207,6 +1207,7 @@ exports.Room = function(room, channel){
 			res[i].reward = rw;
 			o.data.score += rw.score || 0;
 			o.money += rw.money || 0;
+			o.data.rankPoint += rw.rankPoint || 0;
 			o.data.record[Const.GAME_TYPE[my.mode]][2] += rw.score || 0;
 			o.data.record[Const.GAME_TYPE[my.mode]][3] += rw.playTime;
 			if(!my.practice && rw.together){
@@ -1373,7 +1374,7 @@ function getGuestName(sid){
 	for(i=0; i<len; i++){
 		res += sid.charCodeAt(i) * (i+1);
 	}
-	return "GUEST" + (1000 + (res % 9000));
+	return "손님" + (1 + (res % 500));
 }
 function shuffle(arr){
 	var i, r = [];
@@ -1383,8 +1384,8 @@ function shuffle(arr){
 	
 	return r;
 }
-function getRewards(mode, score, bonus, rank, all, ss){
-	var rw = { score: 0, money: 0 };
+function getRewards(rankScore, mode, score, bonus, rank, all, ss, opts){
+	var rw = { score: 0, money: 0, rankPoint: 0 };
 	var sr = score / ss;
 	
 	// all은 1~8
@@ -1421,7 +1422,7 @@ function getRewards(mode, score, bonus, rank, all, ss){
 			rw.score += score * 0.5;
 			break;
 		case 'KDA':
-			rw.score += score * 0.57;
+			rw.score += score * 1.1;
 			break;
 		case 'EDA':
 			rw.score += score * 0.65;
@@ -1449,6 +1450,15 @@ function getRewards(mode, score, bonus, rank, all, ss){
 	rw.score += bonus;
 	rw.score = rw.score || 0;
 	rw.money = rw.money || 0;
+	
+	if (opts.rankgame){ //랭크게임 이라면
+		rw.rankPoint = rw.score * 0.05 //점수에 0.05를 곱하고
+		rw.rankPoint = Math.round(rw.rankPoint); //아이템 효과 없이 바로 반영되므로 여기서 반올림한다.
+	}
+	if (opts.returns) rw.score = rw.score * 0.25 // 리턴
+	if (rankScore >= 5000){
+		rw.rankPoint = 0; //마스터 달성 시 추가 랭크 포인트 획득 제한
+	}
 	
 	// applyEquipOptions에서 반올림한다.
 	return rw;
