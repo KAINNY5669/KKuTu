@@ -18,7 +18,7 @@
 
 var GLOBAL = require("./sub/global.json");
 
-exports.KKUTU_MAX = 40;
+exports.KKUTU_MAX = 100
 exports.MAIN_PORTS = GLOBAL.MAIN_PORTS;
 exports.TEST_PORT = 4040;
 exports.SPAM_CLEAR_DELAY = 1600;
@@ -202,13 +202,13 @@ exports.MISSION_ko = [ "가", "나", "다", "라", "마", "바", "사", "아", "
 exports.MISSION_en = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ];
 
 exports.KO_INJEONG = [
-	"SCH", "IMS", "VOC", "KRR", "KTV",
-	"NSK", "KOT", "DOT", "DRR", "DGM", "RAG", "LVL",
-	"LOL", "MRN", "MMM", "MAP", "MKK", "MNG",
-	"MOB", "HYK", "CYP", "HRH", "STA", "OIJ",
-	"KGR", "ESB", "ELW", "OIM", "OVW", "NEX", /*"WOW",*/
-	"YRY", "KPO", "JLN", "JAN", "ZEL", "POK", "HAI",
-	"HSS", "KMV", "HDC", "HOS", "OIK", "MIN"
+	"SCH", "IMS", "VOC", "KTV",
+	"KOT", "DGM", "RAG", "LVL",
+	"LOL", "MAP", "MNG",
+	"STA",
+	"ESB", "ELW", "OVW", "NEX", /*"WOW",*/
+	"KPO", "JLN", "JAN", "ZEL", "POK",
+	"HSS", "KMV", "HOS", "MIN", "KBL", "BSI", "KBL", "NKD", "DOR", "DBG", "MOD", "BAN", "BUS", "BRW", "SVN", "SBK", "APP", "ONE", "WOT", "WBT", "KTR", "CKR", "KRP"
 ];
 exports.EN_INJEONG = [
 	"LOL"

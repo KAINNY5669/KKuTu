@@ -17,7 +17,7 @@
 extends layout
 
 block Subject
-	title= '케이니끄투'
+	title= '끄투블루 - 웹으로 만나는 신박한 끝말잇기'
 
 block CSS
 	link(rel='stylesheet', href='/css/in_game_kkutu.css')
@@ -30,9 +30,9 @@ block Middle
 
 	div#menu-bar(style='float: right; margin-top: -2%;')
 
-			a(target='_blank', href='//cafe.naver.com/kkutuk', style='background-color: #1DDB16;')= '케이끄 카페'
-			a(target='_blank', href='//youtube.kainny.kro.kr', style='background-color: #ff0000;')= '케이끄 유튜브'
-			a(target='_blank', href='//discord.kainny.kro.kr', style='background-color: #7289da;')= '케이끄 디스코드'
+			a(target='_blank', href='//cafe.naver.com/kkutublue', style='background-color: #1DDB16;')= '끄투블루 카페'
+			a(target='_blank', href='//www.youtube.com/channel/UCz0G1bvJ_0PAkFl0uN50DkA?', style='background-color: #ff0000;')= '끄투블루 유튜브'
+			a(target='_blank', href='//discord.gg/6jJjqMW', style='background-color: #7289da;')= '끄투블루 디스코드'
 	div(style='float: left; width: 300px; margin-top: -20px;')
 	
 		a(href='/?server=0')
@@ -46,12 +46,10 @@ block Middle
 				label= L('serverList')
 				label#server-total(style='color: #AAA; font-size: 13px;')
 			div#server-list
-	div(style='float: left; width: calc(100% - 4px); border: 0px solid #CCC; margin-top: 10px; background-color: none;')
+	div(style='float: left; width: calc(100% - 4px); border: 0px solid #CCC; margin-top: 10px; margin-left: -5px; background-color: none;')
 		iframe#kkutu-bulletin(width='100%', height='400px', src='/kkutu_bulletin.html')
 	+separator(0)
-	div(style='float: left; width: calc(100% - 0px); border: 0px solid #CCC; margin-top: 0px; margin-left: -18px; background-color: none;')
-		a(href='https://play.google.com/store/apps/details?id=com.hustay.swing.d25a2ad4939b541aa88c7568c2f2d2150')
-			img(width='26%', height='100px', src="http://kkutuk.com/google-play-badge.png")
+	<p align = "middle"><iframe width="728" height="90" allowtransparency="true" src="https://tab2.clickmon.co.kr/pop/wp_ad_728.php?PopAd=CM_M_1003067%7C%5E%7CCM_A_1076099%7C%5E%7CAdver_M_1046207&mon_rf=REFERRER_URL" frameborder="0" scrolling="no"></iframe></p>
 block Bottom
 	div.bottom-legal!= L('dictionarySupport')
 	div.bottom-legal!= L('etcSupport')

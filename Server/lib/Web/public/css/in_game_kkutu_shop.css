@@ -44,9 +44,12 @@
 	}
 
 /* NIK */
-.x-gm .users-name::before{ content: "[GM]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
-.chat-item>.x-gm::before{ content: "[GM]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
-.room-user-title>.x-gm::before{ content: "[GM]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
+.x-gm .users-name::before{ content: "[운영자]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
+.chat-item>.x-gm::before{ content: "[운영자]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
+.room-user-title>.x-gm::before{ content: "[운영자]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
+.x-gmno .users-name::before{ content: "[총괄]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
+.chat-item>.x-gmno::before{ content: "[총괄]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
+.room-user-title>.x-gmno::before{ content: "[총괄]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
 
 .x-red_name{ color: #FF3333; }
 .x-orange_name{ color: #FFA533; }

@@ -165,7 +165,7 @@ exports.Robot = function(target, place, level){
 	my.setLevel(level);
 	my.setTeam(0);
 };
-exports.Data = function(data){
+exports.Data = function(data, q){
 	var i, j;
 	
 	if(!data) data = {};
@@ -175,6 +175,7 @@ exports.Data = function(data){
 	this.rankPoint = data.rankPoint || 0;
 	this.connectDate = data.connectDate || 0;
 	this.record = {};
+	this.nickname = data.nickname || (q ? q.title : null);
 	for(i in Const.GAME_TYPE){
 		this.record[j = Const.GAME_TYPE[i]] = data.record ? (data.record[Const.GAME_TYPE[i]] || [0, 0, 0, 0]) : [0, 0, 0, 0];
 		if(!this.record[j][3]) this.record[j][3] = 0;
@@ -242,6 +243,7 @@ exports.Client = function(socket, profile, sid){
 			image: GUEST_IMAGE
 		};
 	}
+	my.nickname = "anonymous"
 	my.socket = socket;
 	my.place = 0;
 	my.team = 0;
@@ -440,7 +442,8 @@ exports.Client = function(socket, profile, sid){
 			my.exordial = $user.exordial || "";
 			my.equip = $user.equip || {};
 			my.box = $user.box || {};
-			my.data = new exports.Data($user.kkutu);
+			my.data = new exports.Data($user.kkutu, my.profile);
+			if(my.data.nickname) my.profile.name = my.profile.title = my.data.nickname;
 			my.money = Number($user.money);
 			my.friends = $user.friends || {};
 			if(first) my.flush();
@@ -1392,46 +1395,46 @@ function getRewards(rankScore, mode, score, bonus, rank, all, ss, opts){
 	// rank는 0~7
 	switch(Const.GAME_TYPE[mode]){
 		case "EKT":
-			rw.score += score * 1.4;
+			rw.score += score * 7;
 			break;
 		case "ESH":
-			rw.score += score * 0.5;
+			rw.score += score * 2.5;
 			break;
 		case "KKT":
-			rw.score += score * 1.42;
+			rw.score += score * 7.1;
 			break;
 		case "KSH":
-			rw.score += score * 0.55;
+			rw.score += score * 2.75;
 			break;
 		case "CSQ":
-			rw.score += score * 0.4;
+			rw.score += score * 2;
 			break;
 		case 'KCW':
-			rw.score += score * 1.0;
+			rw.score += score * 5.0;
 			break;
 		case 'KTY':
-			rw.score += score * 0.3;
+			rw.score += score * 1.5;
 			break;
 		case 'ETY':
-			rw.score += score * 0.37;
+			rw.score += score * 1.85;
 			break;
 		case 'KAP':
-			rw.score += score * 0.8;
+			rw.score += score * 4.0;
 			break;
 		case 'HUN':
-			rw.score += score * 0.5;
+			rw.score += score * 2.5;
 			break;
 		case 'KDA':
-			rw.score += score * 1.1;
+			rw.score += score * 5.5;
 			break;
 		case 'EDA':
-			rw.score += score * 0.65;
+			rw.score += score * 3.25;
 			break;
 		case 'KSS':
-			rw.score += score * 0.5;
+			rw.score += score * 2.0;
 			break;
 		case 'ESS':
-			rw.score += score * 0.22;
+			rw.score += score * 1.1;
 			break;
 		default:
 			break;
@@ -1452,7 +1455,7 @@ function getRewards(rankScore, mode, score, bonus, rank, all, ss, opts){
 	rw.money = rw.money || 0;
 	
 	if (opts.rankgame){ //랭크게임 이라면
-		rw.rankPoint = rw.score * 0.05 //점수에 0.05를 곱하고
+		rw.rankPoint = rw.score * 0.15 //점수에 0.05를 곱하고
 		rw.rankPoint = Math.round(rw.rankPoint); //아이템 효과 없이 바로 반영되므로 여기서 반올림한다.
 	}
 	if (opts.returns) rw.score = rw.score * 0.25 // 리턴

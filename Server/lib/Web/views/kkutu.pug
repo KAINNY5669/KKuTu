@@ -39,7 +39,7 @@ mixin SettingOption(id, text, st)
 		label(for=id)= text
 
 block Subject
-	title= '케이니끄투'
+	title= '끄투블루 - 웹으로 만나는 신박한 끝말잇기!'
 
 block JS
 	script(type='text/javascript', src='/js/in_game_kkutu.min.js')
@@ -92,7 +92,7 @@ block Middle
 		button#ExitBtn.for-master.for-normal.for-gaming(style='display: none; background-color: #FFADAD;')= L('exit')
 		button#ReplayBtn.for-lobby(style='display: none; background-color: #D9FF82;')= L('replay')
 		div#facebook-menu.fb-like.for-lobby.for-master.for-normal.for-gaming(data-href='http://kkutu.kr', data-width='300', data-layout='button_count', data-action='like', data-show-faces='true', data-share='true')
-	+Dialog('SettingDiag', 300, 280, L('settingsText'))
+	+Dialog('SettingDiag', 300, 245, L('settingsText'))
 		div.dialog-bar
 			h4= L('mute')
 			+SettingOption('mute-bgm', L('bgm'))
@@ -450,9 +450,11 @@ block Middle
 			div.my-stat-name.ellipse
 			div.my-stat-record
 			div.my-stat-ping
+			div.my-rank-point
 			div
-				div.my-rank
 				div.my-rankPoint
+				br
+				div.my-rank
 			div
 				+GraphBar('my-okg')
 				div.bar-text.my-okg-text
@@ -466,7 +468,7 @@ block Middle
 		input#Talk(maxlength=180, autocomplete="off")
 		button#ChatBtn= L('send')
 	+Product('AD')
-
+		<p align = "left"><iframe width="728" height="90" allowtransparency="true" src="https://tab2.clickmon.co.kr/pop/wp_ad_728.php?PopAd=CM_M_1003067%7C%5E%7CCM_A_1076099%7C%5E%7CAdver_M_1046207&mon_rf=REFERRER_URL" frameborder="0" scrolling="no"></iframe></p>
 block Bottom
 	div.bottom-legal!= L('dictionarySupport')
 	div.bottom-legal!= L('etcSupport')

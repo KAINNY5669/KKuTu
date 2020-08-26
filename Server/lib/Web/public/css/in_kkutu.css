@@ -15,7 +15,45 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+.c {
+	height: 200vh;
+	width: 960px;
+	margin: auto;
+	max-width: 95%;
+}
 
+::-webkit-scrollbar-track
+{
+	border: 10px transparent;
+	// border color does not support transparent on scrollbar
+	// border-color: transparent;
+	background-color: #b2bec3;
+
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #dfe6e9;
+	background: #36d1dc;
+	background: -moz-linear-gradient(left, #36d1dc 0%, #5b86e5 100%);
+	background: -webkit-linear-gradient(left, #36d1dc 0%,#5b86e5 100%);
+	background: linear-gradient(to right, #36d1dc 0%,#5b86e5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#36d1dc', endColorstr='#5b86e5',GradientType=1 );
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #74b9ff;
+	border-radius: 10px;
+	background: #36d1dc;
+	background: #36d1dc;
+	background: -moz-linear-gradient(top, #36d1dc 0%, #5b86e5 100%);
+	background: -webkit-linear-gradient(top, #36d1dc 0%,#5b86e5 100%);
+	background: linear-gradient(to bottom, #36d1dc 0%,#5b86e5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#36d1dc', endColorstr='#5b86e5',GradientType=0 );
+}
 equ{
 	font-family: consolas;
 	font-style: italic;
@@ -37,7 +75,7 @@ equ{
 	}
 	#intro-text{
 		position: absolute;
-		top: 360px;
+		top: 100px;
 		left: 0px;
 		width: 100%;
 		font-size: 15px;
@@ -211,7 +249,6 @@ iframe{
 #ProfileDiag .dialog-body div{ float: left; }
 	.profile-moremi{ margin-right: 3px; width: 80px; height: 80px; }
 	.profile-head-item{ margin: 3px 2px; width: 213px; }
-		.profile-image{ margin-right: 3px; width: 20px; height: 20px; }
 		.profile-level{ margin-right: 3px; width: 20px; height: 20px; }
 		.profile-title{ padding-top: 1px; font-size: 15px; font-weight: bold; width: 190px; }
 		.profile-tag{ font-size: 11px; color: #777; }
@@ -235,7 +272,6 @@ iframe{
 	.UserListBox div{ float: left; }
 	.UserListBox .product-body{ width: 190px; height: 330px; overflow-x: hidden; overflow-y: scroll; }
 	.users-item{ width: 190px; }
-		.users-image{ margin: 1px; width: 18px; height: 18px; }
 		.users-level{ margin: 1px; width: 18px; height: 18px; }
 		.users-name{ padding: 2px 0px 0px 3px; width: 147px; font-size: 13px; }
 		.users-item:hover{ cursor: pointer; background-color: #F4F4F4; }
@@ -720,7 +756,7 @@ iframe{
 }
 	.MeBox div{ float: left; }
 	.bar-text{ color: #EEEEEE; text-align: center; text-shadow: 0px 1px 1px #141414; }
-	.my-image{ width: 80px; height: 80px; }
+	.my-image{ margin-top: 0px; width: 80px; height: 80px; }
 	.my-stat{ padding-left: 5px; width: 105px; }
 		.my-stat-level{ margin: 1px; width: 18px; height: 18px; }
 		.my-stat-name{ padding-top: 3px; padding-left: 4px; width: 76px; height: 17px; font-weight: bold; }
@@ -729,10 +765,10 @@ iframe{
 		.my-okg{ border-radius: 5px; margin-top: 3px; width: 100%; height: 20px; overflow: hidden; background-color: #995511; }
 			.my-okg .graph-bar{ background-color: #FFBB44; }
 		.my-okg-text{ margin-top: -15px; width: 100px; }
-	.my-level{ margin: 13px 0px; width: 190px; font-size: 15px; text-align: center; }
-	.my-gauge{ border-radius: 10px; margin: 3px 0px; width: 190px; height: 30px; overflow: hidden; background-color: #333333; }
+	.my-level{ margin-left: -55px; margin-top: -15px; width: 190px; font-size: 15px; text-align: center; }
+	.my-gauge{ border-radius: 10px; margin-top: 20px; width: 190px; height: 30px; overflow: hidden; background-color: #333333; }
 		.my-gauge .graph-bar{ background-image: url('/img/kkutu/scorebar.png'); }
-	.my-gauge-text{ margin-top: -25px; width: 190px; }
+	.my-gauge-text{ margin-top: -20px; width: 190px; }
 	.category-filter{
 		border-radius: 5px;
 		text-align: center;

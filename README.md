@@ -6,11 +6,9 @@
 	* You to have interested in this repository :)
 - [KKuTu Wiki](https://github.com/JJoriping/KKuTu/wiki)
 - [프리 서버 목록](http://jjo.kr/kkutu)
-- [케이니끄투](http://kkutuk.com)
 - Languages
 	* [한국어](#한국어)
 	* [English](#english)
-
 
 ## 한국어
 > 글자로 놀자! 끄투 온라인
@@ -57,9 +55,7 @@
 - 모든 소스 코드에 대해: [GNU 일반 공중 사용 라이선스](https://github.com/JJoriping/KKuTu/blob/master/LICENSE)
 - 모든 이미지 및 소리에 대해: [크리에이티브 커먼즈 라이선스 CC BY](https://creativecommons.org/licenses/by/4.0/)
 	- 다만 본 레포지토리에서 제공하는 소스 코드로 끄투 서비스를 운영하기 위해 이들을 사용하는 경우 저작자 표시(BY)를 생략할 수 있습니다.
-- 케이니끄투가 공개하는 레포지토리는 극히 일부의 소스코드만을 담았습니다. 본 레포지토리로 구축 시 오류가 발생할 수 있습니다.
-* 케이니끄투가 개발한 모든 소스코드에 대해 CC0 1.0 Universal (CC0 1.0)Public Domain Dedication
-- 다만 케이니끄투가 제작한 이미지에 대해 Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
+
 ## English
 > Rule the words! KKuTu Online
 
