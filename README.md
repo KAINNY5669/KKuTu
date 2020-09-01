@@ -10,6 +10,10 @@
 	* [한국어](#한국어)
 	* [English](#english)
 
+- 끄투블루가 공개하는 레포지토리는 일부의 소스코드만을 담았습니다. 본 레포지토리로 구축 시 오류가 발생할 수 있습니다.
+* 끄투블루가 개발한 모든 소스코드에 대해 CC0 1.0 Universal (CC0 1.0)Public Domain Dedication
+* 끄투블루가 제작한 이미지에 대해 Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)
+
 ## 한국어
 > 글자로 놀자! 끄투 온라인
 
