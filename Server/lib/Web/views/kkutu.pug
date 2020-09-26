@@ -39,7 +39,7 @@ mixin SettingOption(id, text, st)
 		label(for=id)= text
 
 block Subject
-	title= '끄투블루 - 웹으로 만나는 신박한 끝말잇기!'
+	title= '끄투블루 - 파랑'
 
 block JS
 	script(type='text/javascript', src='/js/in_game_kkutu.min.js')
@@ -48,6 +48,8 @@ block JS
 block CSS
 	link(rel='stylesheet', href='/css/in_game_kkutu_shop.css')
 	
+block Top
+	img(src='http://kkutu.blue/moremi.png', style='float: right; width:27px; height:27px; margin-top: 0.5px; margin-right: -5px;')
 block Jungle
 	span#PUBLIC= PUBLIC ? "true" : undefined
 	// span#PORT= locals.PORT
@@ -84,7 +86,7 @@ block Middle
 		button#QuickRoomBtn.for-lobby(style='display: none; background-color: #B0D2F3;')= L('quickRoom')
 		button#ShopBtn.for-lobby(style='display: none; background-color: #B3E7B7;')= L('shop')
 		button#DictionaryBtn.for-lobby.for-master.for-normal.for-gaming(style='display: none; background-color: #73D07A;')= L('dict')
-		// button#WordPlusBtn.for-lobby.for-master.for-normal.for-gaming(style='display: none; background-color: #73D07A;')= L('wordPlus')
+		//button#WordPlusBtn.for-lobby.for-master.for-normal.for-gaming(style='display: none; background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(142,45,226,1) 0%, rgba(74,0,224,1) 100%);')= L('wordPlus')
 		button#InviteBtn.for-master(style='display: none; background-color: #9FE669;')= L('invite')
 		button#PracticeBtn.for-master.for-normal(style='display: none; background-color: #FCF5A9;')= L('practice')
 		button#ReadyBtn.for-normal(style='display: none; background-color: #FFC67F;')= L('ready')
@@ -467,8 +469,7 @@ block Middle
 		div#Chat
 		input#Talk(maxlength=180, autocomplete="off")
 		button#ChatBtn= L('send')
-	+Product('AD')
-		<p align = "left"><iframe width="728" height="90" allowtransparency="true" src="https://tab2.clickmon.co.kr/pop/wp_ad_728.php?PopAd=CM_M_1003067%7C%5E%7CCM_A_1076099%7C%5E%7CAdver_M_1046207&mon_rf=REFERRER_URL" frameborder="0" scrolling="no"></iframe></p>
+		
 block Bottom
 	div.bottom-legal!= L('dictionarySupport')
 	div.bottom-legal!= L('etcSupport')

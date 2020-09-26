@@ -1888,11 +1888,10 @@ $lib.Sock.turnHint = function(data){
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 var spamWarning = 0;
 var spamCount = 0;
+const PORTS = [ 30, 34, 43 ];
 // var smile = 94, tag = 35;
-
 function zeroPadding(num, len){ var s = num.toString(); return "000000000000000".slice(0, Math.max(0, len - s.length)) + s; }
 function send(type, data, toMaster){
 	var i, r = { type: type };
@@ -2023,7 +2022,7 @@ function route(func, a0, a1, a2, a3, a4){
 }
 function connectToRoom(chan, rid){
 	var url = $data.URL.replace(/:(\d+)/, function(v, p1){
-		return ":" + (Number(p1) + 416 + Number(chan) - 1);
+		return ":" + (Number(p1) + PORTS[Number(chan)-1]);
 	}) + "&" + chan + "&" + rid;
 	
 	if(rws) return;
@@ -2388,6 +2387,13 @@ function onMessage(data){
         ws.send(JSON.stringify({type: 'recaptcha', token: response}));
     }
 }
+var autoRefresh = function autoRefresh(){
+	try{
+		if($data.room) send('refresh', undefined, true);
+		send('refresh');
+	}catch(e){
+	}
+}
 function welcome(){
 	playBGM('lobby');
 	$("#Intro").animate({ 'opacity': 1 }, 1000).animate({ 'opacity': 0 }, 1000);
@@ -2395,7 +2401,7 @@ function welcome(){
 	addTimeout(function(){
 		$("#Intro").hide();
 	}, 2000);
-	
+	_setInterval(autoRefresh, 5000);
 	if($data.admin) console.log("관리자 모드");
 }
 function getKickText(profile, vote){

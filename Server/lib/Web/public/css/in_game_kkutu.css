@@ -15,6 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+ @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	70% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 .c {
 	height: 200vh;
 	width: 960px;
@@ -80,8 +92,9 @@ equ{
 	z-index: 5;
 }
 #Top{
-	background-color: #7CC4F8;
-	background-image: none;
+	background: linear-gradient(-45deg, rgba(131,58,180,1) 0%, rgba(0,198,255,1) 0%, rgba(0,114,255,1));
+	background-size: 400% 400%;
+	animation: gradient 6s ease infinite;
 }
 #Top .menu-btn{
 	color: #111111;

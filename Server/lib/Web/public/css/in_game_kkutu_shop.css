@@ -15,7 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
+ @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	70% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 .goods{
 	margin: 2px;
 	border-radius: 5px;
@@ -46,7 +56,7 @@
 /* NIK */
 .x-gm .users-name::before{ content: "[운영자]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
 .chat-item>.x-gm::before{ content: "[운영자]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
-.room-user-title>.x-gm::before{ content: "[운영자]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
+.room-user-title>.x-gm::before{ content: "[운영자]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF;  }
 .x-gmno .users-name::before{ content: "[총괄]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
 .chat-item>.x-gmno::before{ content: "[총괄]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }
 .room-user-title>.x-gmno::before{ content: "[총괄]"; color: #2F77D9; text-shadow: 0px 0px 2px #2AF; }

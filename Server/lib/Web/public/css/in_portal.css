@@ -94,7 +94,7 @@
 		.ss-q{ background-color: #F55; }
 		.ss-x{ background-color: #777; }
 	.server-name{ width: 60px; }
-	.server-people{ width: 190px; height: 100%; }
+	.server-people{ width: 190px; height: 100%;  }
 		.server-people>.graph-bar{ background-image: url(/img/blue_gauge.png); }
 		.server-people>label{ position: relative; display: block; top: -14px; width: 100%; text-align: center; font-size: 11px; }
 	.server-enter{ width: 50px; text-align: center; }
