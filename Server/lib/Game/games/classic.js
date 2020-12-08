@@ -100,7 +100,7 @@ exports.getTitle = function(){
 		var i, list = [];
 		var len;
 		
-		/* ºÎÇÏ°¡ ³Ê¹« °É¸°´Ù¸é ÁÖ¼®À» Ç®ÀÚ.
+		/* ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ê¹ï¿½ ï¿½É¸ï¿½ï¿½Ù¸ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½.
 		R.go(true);
 		return R;
 		*/
@@ -133,7 +133,14 @@ exports.roundReady = function(){
 		my.game.char = my.game.title[my.game.round - 1];
 		my.game.subChar = getSubChar.call(my, my.game.char);
 		my.game.chain = [];
-		if(my.opts.mission) my.game.mission = getMission(my.rule.lang);
+		if(my.opts.mission) {
+			if(my.opts.randommission && my.rule.lang == "ko") {
+				my.game.mission = String.fromCharCode( 44031 + Math.ceil( 11172 * Math.random() ) )
+			}
+			else {
+			    my.game.mission = getMission(my.rule.lang);
+			}
+		}
 		if(my.opts.sami) my.game.wordLength = 2;
 		
 		my.byMaster('roundReady', {
@@ -218,7 +225,7 @@ exports.submit = function(client, text){
 	if(!my.game.char) return;
 	
 	if(!isChainable(text, my.mode, my.game.char, my.game.subChar)) return client.chat(text);
-	if(my.game.chain.indexOf(text) != -1) return client.publish('turnError', { code: 409, value: text }, true);
+	if(my.game.chain.indexOf(text) != -1 && !my.opts.returns) return client.publish('turnError', { code: 409, value: text }, true);
 	
 	l = my.rule.lang;
 	my.game.loading = true;
@@ -255,8 +262,15 @@ exports.submit = function(client, text){
 					bonus: (my.game.mission === true) ? score - my.getScore(text, t, true) : 0,
 					baby: $doc.baby
 				}, true);
-				if(my.game.mission === true){
-					my.game.mission = getMission(my.rule.lang);
+				if(my.game.mission === true) {
+		            if(my.opts.mission) {
+			            if(my.opts.randommission) {
+		            		my.game.mission = String.fromCharCode( 44031 + Math.ceil( 11172 * Math.random() ) )
+		            	}
+		            	else {
+		            	    my.game.mission = getMission(my.rule.lang);
+		            	}
+		            }
 				}
 				setTimeout(my.turnNext, my.game.turnTime / 6);
 				if(!client.robot){
@@ -412,9 +426,9 @@ function getMission(l){
 }
 function getAuto(char, subc, type){
 	/* type
-		0 ¹«ÀÛÀ§ ´Ü¾î ÇÏ³ª
-		1 Á¸Àç ¿©ºÎ
-		2 ´Ü¾î ¸ñ·Ï
+		0 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ü¾ï¿½ ï¿½Ï³ï¿½
+		1 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		2 ï¿½Ü¾ï¿½ ï¿½ï¿½ï¿½
 	*/
 	var my = this;
 	var R = new Lizard.Tail();
@@ -445,7 +459,7 @@ function getAuto(char, subc, type){
 	if(!char){
 		console.log(`Undefined char detected! key=${key} type=${type} adc=${adc}`);
 	}
-	MAN.findOne([ '_id', char || "¡Ú" ]).on(function($mn){
+	MAN.findOne([ '_id', char || "ï¿½ï¿½" ]).on(function($mn){
 		if($mn && bool){
 			if($mn[key] === null) produce();
 			else R.go($mn[key]);
@@ -545,12 +559,12 @@ function getSubChar(char){
 			ca = [ Math.floor(k/28/21), Math.floor(k/28)%21, k%28 ];
 			cb = [ ca[0] + 0x1100, ca[1] + 0x1161, ca[2] + 0x11A7 ];
 			cc = false;
-			if(cb[0] == 4357){ // ¤©¿¡¼­ ¤¤, ¤·
+			if(cb[0] == 4357){ // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½
 				cc = true;
 				if(RIEUL_TO_NIEUN.includes(cb[1])) cb[0] = 4354;
 				else if(RIEUL_TO_IEUNG.includes(cb[1])) cb[0] = 4363;
 				else cc = false;
-			}else if(cb[0] == 4354){ // ¤¤¿¡¼­ ¤·
+			}else if(cb[0] == 4354){ // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 				if(NIEUN_TO_IEUNG.indexOf(cb[1]) != -1){
 					cb[0] = 4363;
 					cc = true;
